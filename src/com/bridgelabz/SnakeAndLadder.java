@@ -1,41 +1,41 @@
 package com.bridgelabz;
 
 public class SnakeAndLadder {
-    static final int ladder = 1;
-    static final int snake = 2;
+    static final int NO_PLAY = 0;
+    static final int LADDER = 1;
+    static final int SNAKE = 2;
+    static final int START_POSITION = 0;
     static final int WIN_POSITION = 100;
 
-    static final int START_POSITION = 0;
-
     public static void main(String[] args) {
-        int startPosition = 0;
-        System.out.println("Starting position :" + startPosition);
-        int nowYourPosition = 0;
-        while (nowYourPosition < 100) {
+        int playerPosition = 0;
+        int count = 0;
+        while (playerPosition < WIN_POSITION) {
             int die = (int) (Math.random() * (6) + 1);
             System.out.println("Roll The Die to Get a Number is = " + die);
-
             int optCheck = (int) (Math.random() * (3) + 1);
+            ++count;
             switch (optCheck) {
-                case ladder:
-                    System.out.println("Ladder :");
-                        if (nowYourPosition+die<=100)
-                        nowYourPosition = nowYourPosition + die;
+                case NO_PLAY:
+                    System.out.println("No play");
+                    break;
+                case LADDER:
+                    if (playerPosition + die <= WIN_POSITION)
+                        playerPosition = playerPosition + die;
                     break;
 
-                case snake:
-                    System.out.println("Snake :");
-                    nowYourPosition = nowYourPosition - die;
-                    if (nowYourPosition < 0) {
-                        nowYourPosition = 0;
+                case SNAKE:
+                    playerPosition = playerPosition - die;
+                    if (playerPosition < START_POSITION) {
+                        playerPosition = 0;
                     }
                     break;
 
                 default:
-                    System.out.println("No play");
-                    break;
+                    System.out.println("wrong option");
+
             }
-            System.out.println("Now your Position is :" + nowYourPosition);
+            System.out.println("Now your Position is :" + playerPosition + " Number of Time Dice are Played " + count);
 
 
         }
