@@ -65,6 +65,7 @@ public class SnakeAndLadder {
             }
             playerChance++;
         }
+        
         System.out.println("Dice Count :"+count);
 
 
