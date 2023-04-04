@@ -1,33 +1,43 @@
 package com.bridgelabz;
 
-import java.util.Random;
-
 public class SnakeAndLadder {
-    static final int noPlay = 0;
     static final int ladder = 1;
     static final int snake = 2;
+    static final int WIN_POSITION = 100;
+
+    static final int START_POSITION = 0;
 
     public static void main(String[] args) {
-        int StartPosition = 0;
-        System.out.println("Starting position :" + StartPosition);
-        int die = (int) (Math.random() * 10 % 6 + 1);
-        System.out.println("Roll the die to get a number is :" + die);
-        int optCheck = (int) (Math.random() * 10 % 3);
-
+        int startPosition = 0;
+        System.out.println("Starting position :" + startPosition);
         int nowYourPosition = 0;
+        while (nowYourPosition < 100) {
+            int die = (int) (Math.random() * (6) + 1);
+            System.out.println("Roll The Die to Get a Number is = " + die);
 
-        if (optCheck == ladder) {
-            System.out.println("Ladder :");
-            nowYourPosition = nowYourPosition + die;
-        } else if (optCheck == snake) {
-            System.out.println("Snake :");
-            nowYourPosition = 0;
-        } else {
-            System.out.println("No play");
-            nowYourPosition = nowYourPosition;
+            int optCheck = (int) (Math.random() * (3) + 1);
+            switch (optCheck) {
+                case ladder:
+                    System.out.println("Ladder :");
+                        if (nowYourPosition+die<=100)
+                        nowYourPosition = nowYourPosition + die;
+                    break;
+
+                case snake:
+                    System.out.println("Snake :");
+                    nowYourPosition = nowYourPosition - die;
+                    if (nowYourPosition < 0) {
+                        nowYourPosition = 0;
+                    }
+                    break;
+
+                default:
+                    System.out.println("No play");
+                    break;
+            }
+            System.out.println("Now your Position is :" + nowYourPosition);
+
+
         }
-        System.out.println("Now your Position is :" + nowYourPosition);
-
-
     }
 }
